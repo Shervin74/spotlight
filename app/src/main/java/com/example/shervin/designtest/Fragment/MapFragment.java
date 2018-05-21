@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.shervin.designtest.Manifest;
 import com.example.shervin.designtest.R;
+import com.example.shervin.designtest.base.BaseFragment;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,7 +55,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment
+public class MapFragment extends BaseFragment
         implements OnMapReadyCallback,
         GoogleMap.OnPolylineClickListener,
         GoogleMap.OnPolygonClickListener {

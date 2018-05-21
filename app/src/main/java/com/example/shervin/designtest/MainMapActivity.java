@@ -26,9 +26,10 @@ import com.example.shervin.designtest.Fragment.AdvertisListFragment;
 import com.example.shervin.designtest.Fragment.BookmarkFragment;
 import com.example.shervin.designtest.Fragment.MapFragment;
 import com.example.shervin.designtest.Fragment.SearchFragment;
+import com.example.shervin.designtest.base.BaseActivity;
 import com.google.android.gms.maps.model.LatLng;
 
-public class MainMapActivity extends AppCompatActivity{
+public class MainMapActivity extends BaseActivity{
 
     BottomNavigationView bottomNavigationView;
     Button button, btnDraw, btnTest;

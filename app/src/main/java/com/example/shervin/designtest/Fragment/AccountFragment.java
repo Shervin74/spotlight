@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.shervin.designtest.R;
+import com.example.shervin.designtest.base.BaseFragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccountFragment extends Fragment {
+public class AccountFragment extends BaseFragment {
 
 
     public AccountFragment() {

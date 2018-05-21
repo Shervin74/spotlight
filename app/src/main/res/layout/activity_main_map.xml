@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@drawable/custom_layout"
-        android:backgroundTint="#fafafa"
+        android:backgroundTint="@color/md_white_1000"
         android:clickable="true"
         android:elevation="10dp"
         android:gravity="top"

@@ -18,6 +18,7 @@ import com.example.shervin.designtest.WebServices.Advertisments.Interfaces.DataI
 import com.example.shervin.designtest.WebServices.Advertisments.Model.Filter.Data;
 import com.example.shervin.designtest.WebServices.ApiClient;
 import com.example.shervin.designtest.adapters.MyRecyclerAdapterAdvertismentList;
+import com.example.shervin.designtest.base.BaseFragment;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AdvertisListFragment extends Fragment {
+public class AdvertisListFragment extends BaseFragment {
 
     View view;
 

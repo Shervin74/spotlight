@@ -15,6 +15,7 @@ import com.example.shervin.designtest.R;
 import com.example.shervin.designtest.WebServices.Advertisments.DataResponse;
 import com.example.shervin.designtest.WebServices.Advertisments.Interfaces.DataInterface;
 import com.example.shervin.designtest.WebServices.ApiClient;
+import com.example.shervin.designtest.base.BaseFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -35,7 +36,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BookmarkFragment extends Fragment implements
+public class BookmarkFragment extends BaseFragment implements
         OnMapReadyCallback,
         GoogleMap.OnPolylineClickListener,
         GoogleMap.OnPolygonClickListener,
@@ -248,7 +249,7 @@ public class BookmarkFragment extends Fragment implements
 
             @Override
             public void onFailure(Call<DataResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "response is fail", Toast.LENGTH_SHORT).show();
+                toast("response is fail");
             }
         });
     }
