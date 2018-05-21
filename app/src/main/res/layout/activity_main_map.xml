@@ -19,6 +19,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true"
         app:layout_constraintTop_toTopOf="parent">
 
 
@@ -31,6 +32,8 @@
             android:src="@drawable/ic_action_map"
             android:clickable="true"
             android:onClick="btnLocListener"
+            android:contentDescription="@string/todo"
+            android:focusable="true"
             tools:ignore="OnClick" />
 
         <ImageView
@@ -41,16 +44,18 @@
             android:clickable="true"
             android:onClick="btnAdvertisListener"
             android:src="@drawable/ic_action_advertisement_list"
+            android:contentDescription="@string/todo"
+            android:focusable="true"
             tools:ignore="OnClick" />
 
         <TextView
             android:id="@+id/tap_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:textColor="#fafafa"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:background="@drawable/border_set"
             android:padding="6dp" />
 
@@ -61,12 +66,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemBackground="@color/common_google_signin_btn_text_dark_default"
-        app:itemIconTint="@color/bottom_navigation_item_color"
-        app:itemTextColor="@color/bottom_navigation_item_color"
+        android:elevation="10dp"
+        app:itemIconTint="@color/md_black_1000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:itemTextColor="@color/md_black_1000"
         app:menu="@menu/bottom_navigation_main" />
 
     <RelativeLayout

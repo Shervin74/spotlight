@@ -1,33 +1,25 @@
 package com.example.shervin.designtest;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.preference.PreferenceManager;
+import android.graphics.PorterDuff.Mode;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.graphics.PorterDuff.Mode;
 
 import com.example.shervin.designtest.Fragment.AccountFragment;
 import com.example.shervin.designtest.Fragment.AdvertisListFragment;
 import com.example.shervin.designtest.Fragment.BookmarkFragment;
 import com.example.shervin.designtest.Fragment.MapFragment;
-import com.example.shervin.designtest.Fragment.SearchFragment;
 import com.example.shervin.designtest.base.BaseActivity;
-import com.google.android.gms.maps.model.LatLng;
 
 public class MainMapActivity extends BaseActivity{
 
@@ -43,10 +35,10 @@ public class MainMapActivity extends BaseActivity{
         setContentView(R.layout.activity_main_map);
 
        // mTapTextView = (TextView) findViewById(R.id.tap_text);
-        linearLayout = (LinearLayout) findViewById(R.id.linearActionBar);
-        imgLoc = (ImageView) findViewById(R.id.imgBtnLoc);
-        btnDraw = (Button) findViewById(R.id.btnDraw);
-        btnTest = (Button) findViewById(R.id.button2);
+        linearLayout = findViewById(R.id.linearActionBar);
+        imgLoc = findViewById(R.id.imgBtnLoc);
+        btnDraw = findViewById(R.id.btnDraw);
+        btnTest = findViewById(R.id.button2);
 
 
         FragmentManager bmManager = getSupportFragmentManager();
@@ -66,15 +58,15 @@ public class MainMapActivity extends BaseActivity{
         //_______________________________________________________________________________________
 
 
-        button = (Button)findViewById(R.id.button2);
+        button = findViewById(R.id.button2);
 
         // this section for bottom navigation view -----------------------------------------
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.acction_account:
+                    case R.id.action_account:
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         AccountFragment fragment = new AccountFragment();
@@ -141,7 +133,7 @@ public class MainMapActivity extends BaseActivity{
      * @param s1
      */
     public void sendData(String s1){
-        mTapTextView = (TextView) findViewById(R.id.tap_text);
+        mTapTextView = findViewById(R.id.tap_text);
         mTapTextView.setText(s1);
     }
 

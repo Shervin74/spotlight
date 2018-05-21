@@ -2,6 +2,7 @@ package com.example.shervin.designtest.Fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +44,7 @@ public class AdvertisListFragment extends BaseFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_advertis_list, container, false);
@@ -60,15 +61,16 @@ public class AdvertisListFragment extends BaseFragment {
 
         call.enqueue(new Callback<DataResponse>() {
             @Override
-            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+            public void onResponse(@NonNull Call<DataResponse> call, @NonNull Response<DataResponse> response) {
                 if (response.isSuccessful()){
+                    assert response.body() != null;
                     List<Data> dataList = response.body().getDatas();
                     setUpRecyclerView(dataList);
                 }
             }
 
             @Override
-            public void onFailure(Call<DataResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<DataResponse> call, @NonNull Throwable t) {
                 Log.e("ERROR", t.getMessage());
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }

@@ -1,54 +1,32 @@
 package com.example.shervin.designtest.Fragment;
 
 
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
-import android.support.v4.app.ActivityCompat;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.shervin.designtest.Manifest;
 import com.example.shervin.designtest.R;
 import com.example.shervin.designtest.base.BaseFragment;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CustomCap;
 import com.google.android.gms.maps.model.Dash;
 import com.google.android.gms.maps.model.Dot;
 import com.google.android.gms.maps.model.Gap;
-import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.maps.model.RoundCap;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -60,38 +38,32 @@ public class MapFragment extends BaseFragment
         GoogleMap.OnPolylineClickListener,
         GoogleMap.OnPolygonClickListener {
 
-    GoogleMap googleMap;
-    ArrayList<LatLng> MarkerPoints = null;
-    Polyline polyline;
-    private boolean checkClick = false;
-
     private static final int COLOR_BLACK_ARGB = 0xff000000;
     private static final int COLOR_WHITE_ARGB = 0xffffffff;
     private static final int COLOR_GREEN_ARGB = 0xd84315aa;
     private static final int COLOR_PURPLE_ARGB = 0x0d47a155;
     private static final int COLOR_ORANGE_ARGB = 0x90CAf9;
     private static final int COLOR_BLUE_ARGB = 0x90CAf9;
-
-    private static final int POLYLINE_STROKE_WIDTH_PX = 12;
+    //    private static final int POLYLINE_STROKE_WIDTH_PX = 12;
     private static final int POLYGON_STROKE_WIDTH_PX = 8;
     private static final int PATTERN_DASH_LENGTH_PX = 200;
     private static final int PATTERN_GAP_LENGTH_PX = 50;
     private static final PatternItem DOT = new Dot();
     private static final PatternItem DASH = new Dash(PATTERN_DASH_LENGTH_PX);
     private static final PatternItem GAP = new Gap(PATTERN_GAP_LENGTH_PX);
-    //
-    // Create a stroke pattern of a gap followed by a dot.
-    private static final List<PatternItem> PATTERN_POLYLINE_DOTTED = Arrays.asList(GAP, DOT);
 
+    // Create a stroke pattern of a gap followed by a dot.
+    //private static final List<PatternItem> PATTERN_POLYLINE_DOTTED = Arrays.asList(GAP, DOT);
     // Create a stroke pattern of a gap followed by a dash.
     private static final List<PatternItem> PATTERN_POLYGON_ALPHA = Arrays.asList(GAP, DASH);
-
     // Create a stroke pattern of a dot followed by a gap, a dash, and another gap.
-    private static final List<PatternItem> PATTERN_POLYGON_BETA =
-            Arrays.asList(DOT, GAP, DASH, GAP);
+    private static final List<PatternItem> PATTERN_POLYGON_BETA = Arrays.asList(DOT, GAP, DASH, GAP);
+    private static final List<PatternItem> PATTERN_POLYGON_LINE = Arrays.asList(DASH);
 
-    private static final List<PatternItem> PATTERN_POLYGON_LINE =
-            Arrays.asList(DASH);
+    GoogleMap googleMap;
+    ArrayList<LatLng> MarkerPoints = null;
+    //Polyline polyline;
+    //private boolean checkClick = false;
 
 
     public MapFragment() {
@@ -100,7 +72,7 @@ public class MapFragment extends BaseFragment
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_map, container, false);
@@ -118,8 +90,8 @@ public class MapFragment extends BaseFragment
         MarkerPoints = new ArrayList<>();
 
 
-        TextView textView = rootview.findViewById(R.id.textView);
-        Toast.makeText(getActivity().getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+        toast("clicked");
+        //Toast.makeText(getActivity().getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
 
 
         return rootview;
@@ -168,19 +140,17 @@ public class MapFragment extends BaseFragment
 //        polygonStyle(polygon1);
 
 
-        /**_____________________________________________________________________**/
+        /*_____________________________________________________________________**/
 
-        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
+        googleMap.setOnMapClickListener(latLng -> {
 
-                MarkerPoints.add(latLng);
+            MarkerPoints.add(latLng);
 
-                // Creating MarkerOptions
-                MarkerOptions options = new MarkerOptions();
+            // Creating MarkerOptions
+            MarkerOptions options = new MarkerOptions();
 
-                // Setting the position of the marker
-                options.position(latLng);
+            // Setting the position of the marker
+            options.position(latLng);
 
 
 //                // Already two locations
@@ -189,32 +159,32 @@ public class MapFragment extends BaseFragment
 //                    googleMap.clear();
 //                }
 //
-                // Adding new item to the ArrayList
-                Polygon polygon = googleMap.addPolygon(new PolygonOptions()
-                        .addAll(MarkerPoints));
+            // Adding new item to the ArrayList
+            Polygon polygon = googleMap.addPolygon(new PolygonOptions()
+                    .addAll(MarkerPoints));
 
-                if (MarkerPoints.size() == 1) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-                } else if (MarkerPoints.size() == 2) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                } else if (MarkerPoints.size() == 3) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                } else if (MarkerPoints.size() == 4) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                }
+            if (MarkerPoints.size() == 1) {
+                options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            } else if (MarkerPoints.size() == 2) {
+                options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            } else if (MarkerPoints.size() == 3) {
+                options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            } else if (MarkerPoints.size() == 4) {
+                options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            }
 
-                // Add new marker to the Google Map Android API V2
+            // Add new marker to the Google Map Android API V2
+            googleMap.addMarker(options);
+
+            stylePolygon(polygon);
+
+            if (MarkerPoints.size() >= 4) {
+                polygon.getPoints();
+                googleMap.clear();
                 googleMap.addMarker(options);
-
                 stylePolygon(polygon);
-
-                if (MarkerPoints.size() >= 4) {
-                    polygon.getPoints();
-                    googleMap.clear();
-                    googleMap.addMarker(options);
-                    stylePolygon(polygon);
-                    polygon.setPoints(MarkerPoints);
-                }
+                polygon.setPoints(MarkerPoints);
+            }
 
 
 //
@@ -234,7 +204,6 @@ public class MapFragment extends BaseFragment
 //                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(origin));
 //                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 //                }
-            }
         });
 
 //        points = new ArrayList<LatLng>();
@@ -267,7 +236,7 @@ public class MapFragment extends BaseFragment
     }
 
 
-    /**-----------get Url-----------**/
+    /*-----------get Url-----------**/
 //    private String getUrl(LatLng origin, LatLng dest) {
 //
 //        //origin of route
@@ -300,11 +269,30 @@ public class MapFragment extends BaseFragment
     }
 
     /**
-     * -----------Ploygon------------
+     * -----------Polygon------------
      **/
     @Override
     public void onPolygonClick(Polygon polygon) {
 
+    }
+
+    public void stylePolygon(Polygon polygon) {
+
+        if (MarkerPoints.size() >= 3) {
+            List<PatternItem> pattern;
+            int strokeColor;
+            int fillColor;
+
+            pattern = PATTERN_POLYGON_LINE;
+            strokeColor = COLOR_GREEN_ARGB;
+            fillColor = COLOR_PURPLE_ARGB;
+
+            polygon.setStrokePattern(pattern);
+            polygon.setStrokeWidth(POLYGON_STROKE_WIDTH_PX);
+            polygon.setStrokeColor(strokeColor);
+            polygon.setFillColor(fillColor);
+
+        }
     }
 
     public void polygonStyle(Polygon polygon) {
@@ -353,25 +341,6 @@ public class MapFragment extends BaseFragment
 //            Polygon polygon = googleMap.addPolygon(polygonOptions);
 //            polygon.setStrokePattern(pattern);
 //        }
-    }
-
-    public void stylePolygon(Polygon polygon) {
-
-        if (MarkerPoints.size() >= 3) {
-            List<PatternItem> pattern = null;
-            int strokeColor = COLOR_BLACK_ARGB;
-            int fillColor = COLOR_WHITE_ARGB;
-
-            pattern = PATTERN_POLYGON_LINE;
-            strokeColor = COLOR_GREEN_ARGB;
-            fillColor = COLOR_PURPLE_ARGB;
-
-            polygon.setStrokePattern(pattern);
-            polygon.setStrokeWidth(POLYGON_STROKE_WIDTH_PX);
-            polygon.setStrokeColor(strokeColor);
-            polygon.setFillColor(fillColor);
-
-        }
     }
 
 //    private void stylePolyline(Polyline polyline) {

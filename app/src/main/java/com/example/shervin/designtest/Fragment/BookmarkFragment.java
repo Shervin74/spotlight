@@ -2,13 +2,13 @@ package com.example.shervin.designtest.Fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.shervin.designtest.MainMapActivity;
 import com.example.shervin.designtest.R;
@@ -45,11 +45,11 @@ public class BookmarkFragment extends BaseFragment implements
         GoogleMap.OnMapLongClickListener {
 
 
-    private GoogleMap mMap;
     Button one, two, three;
     List<Double> coordinate;
     LatLng latLng;
-    int typeIds;
+    //int typeIds;
+    private GoogleMap mMap;
 
     //TextView mTapTextView;
 
@@ -60,7 +60,7 @@ public class BookmarkFragment extends BaseFragment implements
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View mapView = inflater.inflate(R.layout.fragment_bookmark, container, false);
@@ -89,7 +89,7 @@ public class BookmarkFragment extends BaseFragment implements
 
         //googleMap.setMinZoomPreference(11);
 
-        Polygon mPolygon = googleMap.addPolygon(new PolygonOptions()
+        googleMap.addPolygon(new PolygonOptions()
                 .add(
                         new LatLng(35.793128, 51.435054),
                         new LatLng(35.785321, 51.435796),
@@ -107,7 +107,7 @@ public class BookmarkFragment extends BaseFragment implements
 
 
         AdvertismentsData();
-        }
+    }
 
     @Override
     public void onMapClick(LatLng latLng) {
@@ -115,8 +115,8 @@ public class BookmarkFragment extends BaseFragment implements
         //mTapTextView.setText("" + latLng);
 
         MainMapActivity activity = (MainMapActivity) getActivity();
-        activity.sendData(coordinat);
-
+        if (activity != null)
+            activity.sendData(coordinat);
     }
 
     @Override
@@ -125,7 +125,8 @@ public class BookmarkFragment extends BaseFragment implements
         // mTapTextView.setText(mMap.getCameraPosition().toString());
 
         MainMapActivity activity = (MainMapActivity) getActivity();
-        activity.sendData(Camera);
+        if (activity != null)
+            activity.sendData(Camera);
     }
 
     @Override
@@ -134,8 +135,8 @@ public class BookmarkFragment extends BaseFragment implements
         // mTapTextView.setText("" + latLng);
 
         MainMapActivity activity = (MainMapActivity) getActivity();
-        activity.sendData(coordinat);
-
+        if (activity != null)
+            activity.sendData(coordinat);
     }
 
     private void AdvertismentsData() {
@@ -145,18 +146,19 @@ public class BookmarkFragment extends BaseFragment implements
 
         call.enqueue(new Callback<DataResponse>() {
             @Override
-            public void onResponse(Call<DataResponse> call, final Response<DataResponse> response) {
+            public void onResponse(@NonNull Call<DataResponse> call, @NonNull final Response<DataResponse> response) {
                 if (response.isSuccessful()) {
 
                     try {
 
+                        assert response.body() != null;
                         for (int i = 0; i < response.body().getDatas().size(); i++) {
-                           // coordinate = response.body().getDatas().get(i).getEstate().getLocation().getCoordinates();
+                            // coordinate = response.body().getDatas().get(i).getEstate().getLocation().getCoordinates();
 
-                           // typeIds = response.body().getDatas().get(i).getAdvertisementType().getId();
+                            // typeIds = response.body().getDatas().get(i).getAdvertisementType().getId();
                             //MarkerOptions markerOptions = new MarkerOptions();
 
-                           // latLng = new LatLng(coordinate.get(1), coordinate.get(0));
+                            // latLng = new LatLng(coordinate.get(1), coordinate.get(0));
 
                             //markerOptions.position(latLng);
 
@@ -180,59 +182,51 @@ public class BookmarkFragment extends BaseFragment implements
 //
 //                        }
 
-                            one.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                            one.setOnClickListener(v -> {
 
-                                    mMap.clear();
+                                mMap.clear();
 
-                                    for (int i = 0; i < response.body().getDatas().size(); i++) {
-                                        List<Double> coordinate = response.body().getDatas().get(i).getEstate().getLocation().getCoordinates();
-                                        LatLng latLng = new LatLng(coordinate.get(1), coordinate.get(0));
-                                        int oneIds = response.body().getDatas().get(i).getAdvertisementType().getId();
-                                        if (oneIds == 1) {
-                                            mMap.addMarker(new MarkerOptions()
-                                                    .position(latLng)
-                                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-                                        }
+                                for (int i1 = 0; i1 < response.body().getDatas().size(); i1++) {
+                                    assert response.body() != null;
+                                    List<Double> coordinate = response.body().getDatas().get(i1).getEstate().getLocation().getCoordinates();
+                                    LatLng latLng = new LatLng(coordinate.get(1), coordinate.get(0));
+                                    int oneIds = response.body().getDatas().get(i1).getAdvertisementType().getId();
+                                    if (oneIds == 1) {
+                                        mMap.addMarker(new MarkerOptions()
+                                                .position(latLng)
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
                                     }
                                 }
                             });
 
-                            two.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                            two.setOnClickListener(v -> {
 
-                                    mMap.clear();
+                                mMap.clear();
 
-                                    for (int i = 0; i < response.body().getDatas().size(); i++) {
-                                        List<Double> coordinate = response.body().getDatas().get(i).getEstate().getLocation().getCoordinates();
-                                        LatLng latLng = new LatLng(coordinate.get(1), coordinate.get(0));
-                                        int twoIds = response.body().getDatas().get(i).getAdvertisementType().getId();
-                                        if (twoIds == 2) {
-                                            mMap.addMarker(new MarkerOptions()
-                                                    .position(latLng)
-                                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                                        }
+                                for (int i12 = 0; i12 < response.body().getDatas().size(); i12++) {
+                                    List<Double> coordinate = response.body().getDatas().get(i12).getEstate().getLocation().getCoordinates();
+                                    LatLng latLng = new LatLng(coordinate.get(1), coordinate.get(0));
+                                    int twoIds = response.body().getDatas().get(i12).getAdvertisementType().getId();
+                                    if (twoIds == 2) {
+                                        mMap.addMarker(new MarkerOptions()
+                                                .position(latLng)
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                                     }
                                 }
                             });
 
-                            three.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    mMap.clear();
+                            three.setOnClickListener(v -> {
+                                mMap.clear();
 
-                                    for (int i = 0; i < response.body().getDatas().size(); i++) {
+                                for (int i13 = 0; i13 < response.body().getDatas().size(); i13++) {
 
-                                        coordinate = response.body().getDatas().get(i).getEstate().getLocation().getCoordinates();
-                                        latLng = new LatLng(coordinate.get(1), coordinate.get(0));
-                                        int threeIds = response.body().getDatas().get(i).getAdvertisementType().getId();
-                                        if (threeIds == 3) {
-                                            mMap.addMarker(new MarkerOptions()
-                                                    .position(latLng)
-                                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-                                        }
+                                    coordinate = response.body().getDatas().get(i13).getEstate().getLocation().getCoordinates();
+                                    latLng = new LatLng(coordinate.get(1), coordinate.get(0));
+                                    int threeIds = response.body().getDatas().get(i13).getAdvertisementType().getId();
+                                    if (threeIds == 3) {
+                                        mMap.addMarker(new MarkerOptions()
+                                                .position(latLng)
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
                                     }
                                 }
                             });
@@ -248,7 +242,7 @@ public class BookmarkFragment extends BaseFragment implements
             }
 
             @Override
-            public void onFailure(Call<DataResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<DataResponse> call, @NonNull Throwable t) {
                 toast("response is fail");
             }
         });
