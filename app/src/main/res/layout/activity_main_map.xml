@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shervin.designtest.MainMapActivity">
+
+    <LinearLayout
+        android:id="@+id/linearActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@drawable/custom_layout"
+        android:backgroundTint="#fafafa"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <ImageView
+            android:id="@+id/imgBtnLoc"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_map"
+            android:clickable="true"
+            android:onClick="btnLocListener"
+            tools:ignore="OnClick" />
+
+        <ImageView
+            android:id="@+id/imgAdverList"
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:onClick="btnAdvertisListener"
+            android:src="@drawable/ic_action_advertisement_list"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:id="@+id/tap_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#fafafa"
+            android:textSize="15dp"
+            android:background="@drawable/border_set"
+            android:padding="6dp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/common_google_signin_btn_text_dark_default"
+        app:itemIconTint="@color/bottom_navigation_item_color"
+        app:itemTextColor="@color/bottom_navigation_item_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_main" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:map="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/map"-->
+        <!--android:name="com.google.android.gms.maps.SupportMapFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:context="com.example.shervin.designtest.MainMapActivity"-->
+        <!--tools:layout="@layout/activity_main_map" />-->
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="70dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/round_button"
+            android:elevation="15dip"
+            android:gravity="center_vertical"
+            android:textCursorDrawable="@drawable/ic_action_touch" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/button2"
+            android:layout_alignEnd="@+id/button2"
+            android:layout_alignStart="@+id/button2"
+            android:layout_marginBottom="17dp"
+            android:backgroundTint="#fafafa"
+            android:scaleType="center"
+            android:src="@drawable/ic_action_touch"
+            android:background="@drawable/round_button"
+            android:id="@+id/btnDraw"
+            android:elevation="20dp"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

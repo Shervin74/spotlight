@@ -1,0 +1,58 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/acction_account"
+        android:title="Account"
+        android:icon="@mipmap/ic_launcher_account"
+        android:enabled="true"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_add"
+        android:title="Add"
+        android:icon="@mipmap/ic_launcher_add"
+        android:enabled="true"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_bookmark"
+        android:title="Bookmark"
+        android:icon="@mipmap/ic_launcher_bookmark"
+        android:enabled="true"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@mipmap/ic_launcher_search"
+        android:enabled="true"
+        app:showAsAction="always"
+        />
+
+    <!--item
+        android1:id="@+id/action_account"
+        android1:enabled="true"
+        android1:icon="@mipmap/ic_launcher_account"
+        android1:title="Account"
+        android:title="Account" />
+    <item
+        android1:id="@+id/action_bookmark"
+        android1:enabled="true"
+        android1:title="Bookmark"
+        android1:icon="@mipmap/ic_launcher_bookmark"
+        android:title="Bookmark"
+        android1:showAsAction="ifRoom" />
+
+    <item
+        android1:id="@+id/action_search"
+        android1:enabled="true"
+        android1:title="Account"
+        android1:icon="@mipmap/ic_launcher_search"
+        android1:showAsAction="ifRoom"
+        android:title="Search" /-->
+
+
+</menu>
